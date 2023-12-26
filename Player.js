@@ -14,7 +14,7 @@ export default class Player {
 		element.className = 'plane';
 
 		element.style.top = '50%';
-		element.style.left = '35%';
+		element.style.left = '25%';
 
 		document.querySelector('.play-zone').appendChild(element);
 

@@ -73,8 +73,9 @@ export default class Tower {
 	get collisionWithPlayer() {
 		const playerRect = player.boundingBox;
 		for (const childRect of Array.from(this.children).map(bin => bin.getBoundingClientRect())) {
-			return !(childRect.top > playerRect.bottom || childRect.right < playerRect.left || childRect.bottom < playerRect.top || childRect.left > playerRect.right);
+			if (!(childRect.top > playerRect.bottom || childRect.right < playerRect.left || childRect.bottom < playerRect.top || childRect.left > playerRect.right)) return true;
 		}
+		return false;
 	}
 	playerPassed() {
 		const playerBoundary = player.boundingBox;

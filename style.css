@@ -4,10 +4,28 @@ html, body {
 	font-family: sans-serif;
 }
 
+.background {
+	z-index: -1;
+	height: 100%;
+	width: 5000px;
+	background: url(./img/background.png) repeat-x;
+	position: absolute;
+	animation: background_ANM 10s linear infinite;
+}
+
+@keyframes background_ANM {
+	0% {
+		transform: translateX(0px);
+	}
+	100% {
+		transform: translateX(-737px);
+	}
+}
+
 .fps-counter {
 	-webkit-text-stroke-width: 1px;
 	-webkit-text-stroke-color: #ffffff01;
-	position: relative;
+	position: absolute;
 	left: 5px;
 	top: 5px;
 	font-weight: bolder;
@@ -17,6 +35,7 @@ html, body {
 }
 
 .wrapper {
+	overflow: hidden;
 	height: 75vh;
 	width: 75vw;
 	transform: translate(-50%, -50%);
@@ -27,7 +46,6 @@ html, body {
 }
 
 .play-zone {
-	overflow: hidden;
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -42,7 +60,6 @@ html, body {
 .tower-container {
 	height: 100%;
 	width: 100px;
-	border: 1px dashed green;
 	position: absolute;
 	top: 0;
 }
