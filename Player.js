@@ -1,3 +1,5 @@
+import { gameEnd } from "./main.js";
+
 export default class Player {
 	#keyPressed = false;
 	#velocity = 0;
@@ -58,7 +60,7 @@ export default class Player {
 		});
 	}
 	move() {
-		if (this.touchingFloor || this.touchingRoof) throw new Error('hit the something');
+		if (this.touchingFloor || this.touchingRoof) return gameEnd((this.touchingFloor) ? 'hit the floor' : 'hit the ceiling');
 		this.element.style.top = `${this.position.y - this.#velocity}px`;
 		this.#velocity -= 0.5;
 	}

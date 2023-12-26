@@ -1,4 +1,4 @@
-import { player } from "./main.js";
+import { player, gameEnd } from "./main.js";
 import ScoreBoardManager from "./ScoreBoardManager.js";
 
 export default class Tower {
@@ -94,7 +94,7 @@ export default class Tower {
 		else if (this.#inPlay && !this.inBounds) return this.#dispose();
 		this.element.style.left = `${this.position.x - this.travelSpeed}px`;
 		if (this.collisionWithPlayer) this.#collisions++;
-		if (this.#collisions >= 10) throw new Error('hit tower');
+		if (this.#collisions >= 10) return gameEnd('hit the twin towers');
 		this.playerPassed();
 	}
 }

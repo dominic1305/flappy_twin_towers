@@ -4,6 +4,12 @@ export default class ScoreBoardManager {
 	static get #board() {
 		return document.querySelector('.score-board-container');
 	}
+	static get scoreInfo() {
+		return {
+			score: ScoreBoardManager.#score,
+			highSore: ScoreBoardManager.#highScore
+		};
+	}
 	static updateScoreBoard() {
 		ScoreBoardManager.#board.querySelector('.score').innerHTML = `Score: ${ScoreBoardManager.#score}`;
 		ScoreBoardManager.#board.querySelector('.high-score').innerHTML = `High Score: ${ScoreBoardManager.#highScore}`;
