@@ -1,0 +1,39 @@
+html, body {
+	margin: 0;
+	user-select: none;
+	font-family: sans-serif;
+}
+
+.fps-counter {
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #ffffff01;
+	position: relative;
+	left: 5px;
+	top: 5px;
+	font-weight: bolder;
+	padding: 2px 5px;
+	color: #90ee90;
+	background-color: #ffffff30;
+}
+
+.wrapper {
+	height: 75vh;
+	width: 75vw;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	border: 1px solid black;
+}
+
+.play-zone {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+}
+
+.plane {
+	transform: translate(-50%, -50%) scale(0.5);
+	position: relative;
+}
