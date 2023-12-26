@@ -1,6 +1,4 @@
-import { gameEnd } from "./main.js";
-
-export default class Player {
+class Player {
 	#keyPressed = false;
 	#velocity = 0;
 	/**@private @param {string} elementID @param {number} jumpHeight*/

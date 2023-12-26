@@ -15,7 +15,7 @@
 				<div class="game-over-score">Score: 0</div>
 				<div class="game-over-high-score">High Score: 0</div>
 			</div>
-			<img class="game-over-play-again-btn" src="./img/play-button-svgrepo-com.svg" alt="play again btn">
+			<img class="game-over-play-again-btn" src="./img/play-button-svgrepo-com.svg" alt="play again btn" draggable="false">
 		</div>
 	</template>
 
@@ -29,6 +29,9 @@
 		<div class="play-zone"></div>
 	</div>
 
-	<script src="./main.js" type="module"></script>
+	<script defer src="./Player.js"></script>
+	<script defer src="./Tower.js"></script>
+	<script defer src="./ScoreBoardManager.js"></script>
+	<script defer src="./main.js"></script>
 </body>
 </html>

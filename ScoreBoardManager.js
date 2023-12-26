@@ -1,4 +1,4 @@
-export default class ScoreBoardManager {
+class ScoreBoardManager {
 	static #score = 0;
 	static #highScore = Number(localStorage.getItem('high-score')) ?? 0;
 	static get #board() {

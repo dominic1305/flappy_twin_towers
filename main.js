@@ -1,8 +1,4 @@
-import Player from "./Player.js";
-import Tower from "./Tower.js";
-import ScoreBoardManager from "./ScoreBoardManager.js";
-
-export const player = Player.spawn(10);
+const player = Player.spawn(10);
 
 let gameOver = false;
 
@@ -26,7 +22,7 @@ requestAnimationFrame(function loop(time) {
 });
 
 /**@param {string} endGameMSG*/
-export function gameEnd(endGameMSG) {
+function gameEnd(endGameMSG) {
 	gameOver = true;
 	document.body.appendChild(document.querySelector('#game-over-popup-tmeplate').content.cloneNode(true));
 	document.querySelector('.game-over-MSG').innerHTML = `you ${endGameMSG}`;

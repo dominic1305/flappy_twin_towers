@@ -1,7 +1,4 @@
-import { player, gameEnd } from "./main.js";
-import ScoreBoardManager from "./ScoreBoardManager.js";
-
-export default class Tower {
+class Tower {
 	static towerArr = [new Tower()].filter(() => false);
 	static #timerMax = 300;
 	static #spawnTimer = Tower.#timerMax;
