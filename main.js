@@ -1,6 +1,7 @@
 import Player from "./Player.js";
+import Tower from "./Tower.js";
 
-const player = Player.spawn(10);
+export const player = Player.spawn(10);
 
 let TIME;
 requestAnimationFrame(function loop(time) {
@@ -11,6 +12,10 @@ requestAnimationFrame(function loop(time) {
 
 		//actionable code
 		player.move();
+		Tower.spawn();
+		for (const tower of Tower.towerArr) {
+			tower.move();
+		}
 	}
 	requestAnimationFrame(loop);
 });

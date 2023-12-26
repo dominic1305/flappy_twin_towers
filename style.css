@@ -27,6 +27,7 @@ html, body {
 }
 
 .play-zone {
+	overflow: hidden;
 	height: 100%;
 	width: 100%;
 	position: absolute;
@@ -37,3 +38,23 @@ html, body {
 	transform: translate(-50%, -50%) scale(0.5);
 	position: relative;
 }
+
+.tower-container {
+	height: 100%;
+	width: 100px;
+	border: 1px dashed green;
+	position: absolute;
+	top: 0;
+}
+
+.tower-container img {
+	width: 100px;
+}
+
+/* .top-tower {
+	transform: rotate(180deg);
+}
+
+.bottom-tower {
+
+} */
