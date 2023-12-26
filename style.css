@@ -51,10 +51,24 @@ html, body {
 	width: 100px;
 }
 
-/* .top-tower {
-	transform: rotate(180deg);
+.score-board-container {
+	text-transform: capitalize;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 5;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-weight: bolder;
+	padding: 2px 5px;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
-.bottom-tower {
+.score {
+	font-size: 20px;
+}
 
-} */
+.high-score {
+	font-size: 15px;
+}

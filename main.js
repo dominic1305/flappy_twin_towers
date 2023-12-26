@@ -1,5 +1,6 @@
 import Player from "./Player.js";
 import Tower from "./Tower.js";
+import ScoreBoardManager from "./ScoreBoardManager.js";
 
 export const player = Player.spawn(10);
 
@@ -16,6 +17,7 @@ requestAnimationFrame(function loop(time) {
 		for (const tower of Tower.towerArr) {
 			tower.move();
 		}
+		ScoreBoardManager.updateScoreBoard();
 	}
 	requestAnimationFrame(loop);
 });

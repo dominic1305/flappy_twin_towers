@@ -1,4 +1,5 @@
 import { player } from "./main.js";
+import ScoreBoardManager from "./ScoreBoardManager.js";
 
 export default class Tower {
 	static towerArr = [new Tower()].filter(() => false);
@@ -7,6 +8,7 @@ export default class Tower {
 	static #gap = 200;
 	#inPlay = false;
 	#collisions = 0;
+	#playerHasPassed = false;
 	/**@private @param {string} elementID @param {number} travelSpeed*/
 	constructor(elementID, travelSpeed) {
 		this.elementID = elementID;
@@ -69,13 +71,20 @@ export default class Tower {
 		return !(entityRect.right < viewPortRect.left || entityRect.left > viewPortRect.right);
 	}
 	get collisionWithPlayer() {
-		const playerBoundary = player.boundingBox;
+		const playerRect = player.boundingBox;
 		for (const childRect of Array.from(this.children).map(bin => bin.getBoundingClientRect())) {
-			return !(childRect.top > playerBoundary.bottom || childRect.right < playerBoundary.left || childRect.bottom < playerBoundary.top || childRect.left > playerBoundary.right);
+			return !(childRect.top > playerRect.bottom || childRect.right < playerRect.left || childRect.bottom < playerRect.top || childRect.left > playerRect.right);
+		}
+	}
+	playerPassed() {
+		const playerBoundary = player.boundingBox;
+		const entityRect = this.boundingBox;
+		if (entityRect.right < playerBoundary.left && !this.#playerHasPassed) {
+			this.#playerHasPassed = true;
+			ScoreBoardManager.addToScore(1);
 		}
 	}
 	#dispose() {//destructor
-		console.log('deleting');
 		Tower.towerArr.splice(Tower.towerArr.indexOf(this), 1);
 		document.querySelector('.play-zone').removeChild(this.element);
 	}
@@ -85,5 +94,6 @@ export default class Tower {
 		this.element.style.left = `${this.position.x - this.travelSpeed}px`;
 		if (this.collisionWithPlayer) this.#collisions++;
 		if (this.#collisions >= 10) throw new Error('hit tower');
+		this.playerPassed();
 	}
 }
