@@ -47,6 +47,9 @@ class Tower {
 		const bottomOffset = gapSize - topOffset;
 		return [topOffset, bottomOffset];
 	}
+	static releaseAll() {//delete all instances
+		Tower.towerArr.splice(0, Tower.towerArr.length);
+	}
 	get element() {
 		return document.querySelector(`#${this.elementID}`);
 	}
