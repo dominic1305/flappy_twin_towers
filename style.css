@@ -1,7 +1,13 @@
 html, body {
+	height: 100vh;
 	margin: 0;
 	user-select: none;
 	font-family: sans-serif;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
 }
 
 .background {
@@ -38,11 +44,8 @@ html, body {
 	overflow: hidden;
 	height: 75vh;
 	width: 75vw;
-	transform: translate(-50%, -50%);
-	position: absolute;
-	top: 50%;
-	left: 50%;
 	border: 1px solid black;
+	position: relative;
 }
 
 .play-zone {
@@ -130,6 +133,11 @@ html, body {
 }
 
 .end-game-explosion {
-	transform: translate(60px, 50px) rotate(270deg);
+	transform: translate(-50%, -70px) rotate(270deg);
 	position: absolute;
+}
+
+.sfx-toggle {
+	margin: 5px 0 0 0;
+	cursor: pointer;
 }

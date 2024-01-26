@@ -1,6 +1,7 @@
 const player = Player.spawn(10);
-
 let gameOver = false;
+const SFX_allahu_akbar = new Audio('./sfx/allahu_akbar.mp3');
+const SFX_explosion = new Audio('./sfx/explosion.mp3');
 
 let TIME;
 requestAnimationFrame(function loop(time) {
@@ -21,17 +22,19 @@ requestAnimationFrame(function loop(time) {
 	requestAnimationFrame(loop);
 });
 
+void function() {
+	document.querySelector('.sfx-toggle').dataset.active = localStorage.getItem('sfx-bool') ?? 1;
+	document.querySelector('.sfx-toggle').src = (Boolean(Number(document.querySelector('.sfx-toggle').dataset.active))) ? './img/audio.png' : './img/no-audio.png';
+}();
+
 /**@param {string} endGameMSG*/
-function gameEnd(endGameMSG) {
+async function gameEnd(endGameMSG) {
 	Tower.releaseAll();
 	gameOver = true;
 	document.body.appendChild(document.querySelector('#game-over-popup-tmeplate').content.cloneNode(true));
 	document.querySelector('.game-over-MSG').innerHTML = `you ${endGameMSG}`;
 
 	if (endGameMSG == 'hit the twin towers') {//play sounds and explosions
-		const SFX_allahu_akbar = new Audio('./sfx/allahu_akbar.mp3');
-		const SFX_explosion = new Audio('./sfx/explosion.mp3');
-
 		const element = document.createElement('img');
 		element.className = 'end-game-explosion';
 		element.style.top = `${player.position.y}px`;
@@ -40,13 +43,15 @@ function gameEnd(endGameMSG) {
 
 		document.querySelector('.play-zone').removeChild(player.element);
 		setTimeout(() => {//play gif only once
-			document.body.removeChild(element);
+			document.querySelector('.play-zone').removeChild(element);
 		}, 1300);
 
-		document.body.appendChild(element);
+		document.querySelector('.play-zone').appendChild(element);
 
-		SFX_explosion.play();
-		SFX_allahu_akbar.play();
+		if (Boolean(Number(document.querySelector('.sfx-toggle').dataset.active))) {
+			SFX_explosion.play();
+			SFX_allahu_akbar.play();
+		}
 	}
 
 	const score = ScoreBoardManager.scoreInfo;
@@ -55,3 +60,9 @@ function gameEnd(endGameMSG) {
 	document.querySelector('.game-over-play-again-btn').addEventListener('click', () => location.reload());
 	document.body.addEventListener('keyup', (e) => { if (e.key == 'Enter' || e.key == ' ') location.reload(); });
 }
+
+document.querySelector('.sfx-toggle').addEventListener('click', (e) => {
+	e.target.dataset.active = Number(!Boolean(Number(e.target.dataset.active)));
+	e.target.src = (Boolean(Number(e.target.dataset.active))) ? './img/audio.png' : './img/no-audio.png';
+	localStorage.setItem('sfx-bool', e.target.dataset.active);
+});
